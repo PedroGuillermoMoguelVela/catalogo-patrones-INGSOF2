@@ -1,10 +1,14 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import Patrones from "./components/Patrones";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <main className="mx-auto md:px-16 px-4">
+        <Patrones />
+      </main>
+    </>
+  );
 }
 
 export default App;

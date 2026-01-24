@@ -1,0 +1,186 @@
+{
+  "patrones_diseno": [
+    {
+      "nombre": "Singleton",
+      "categoria": "Creacional",
+      "proposito": "Garantizar que una clase tenga una única instancia y proporcionar un punto de acceso global a ella.",
+      "codigo_referencia": {
+        "java": "public class Database {\n    private static Database instance;\n    private Database() {}\n    public static Database getInstance() {\n        if (instance == null) {\n            instance = new Database();\n        }\n        return instance;\n    }\n}",
+        "python": "class Database:\n    _instance = None\n    def __new__(cls):\n        if cls._instance is None:\n            cls._instance = super(Database, cls).__new__(cls)\n        return cls._instance"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Singleton {\n        -Singleton instance$\n        -Singleton()\n        +getInstance()$ Singleton\n    }",
+        "descripcion": "Una clase mantiene una única instancia mediante un atributo estático y un método de acceso global."
+      }
+    },
+    {
+      "nombre": "Factory Method",
+      "categoria": "Creacional",
+      "proposito": "Definir una interfaz para crear objetos permitiendo que las subclases decidan qué clase instanciar.",
+      "codigo_referencia": {
+        "java": "interface Product { void use(); }\nclass ConcreteProduct implements Product {\n    public void use() { System.out.println(\"Producto creado\"); }\n}\nabstract class Creator {\n    abstract Product factoryMethod();\n}",
+        "python": "class Product:\n    def use(self):\n        pass\nclass ConcreteProduct(Product):\n    def use(self):\n        print(\"Producto creado\")"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Product {\n        <<interface>>\n        +use()\n    }\n    class ConcreteProduct {\n        +use()\n    }\n    class Creator {\n        <<abstract>>\n        +factoryMethod()* Product\n    }\n    class ConcreteCreator {\n        +factoryMethod() Product\n    }\n    Product <|-- ConcreteProduct\n    Creator <|-- ConcreteCreator\n    Creator ..> Product",
+        "descripcion": "Un creador delega la instanciación de productos a sus subclases."
+      }
+    },
+    {
+      "nombre": "Abstract Factory",
+      "categoria": "Creacional",
+      "proposito": "Proporcionar una interfaz para crear familias de objetos relacionados sin especificar sus clases concretas.",
+      "codigo_referencia": {
+        "java": "interface Button { void render(); }\ninterface GUIFactory {\n    Button createButton();\n}",
+        "python": "class Button:\n    def render(self):\n        pass\nclass GUIFactory:\n    def create_button(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class AbstractFactory {\n        <<interface>>\n        +createProductA()\n        +createProductB()\n    }\n    class ConcreteFactory {\n        +createProductA()\n        +createProductB()\n    }\n    AbstractFactory <|-- ConcreteFactory\n    ConcreteFactory ..> AbstractProductA\n    ConcreteFactory ..> AbstractProductB",
+        "descripcion": "Las fábricas concretas crean conjuntos coherentes de objetos."
+      }
+    },
+    {
+      "nombre": "Builder",
+      "categoria": "Creacional",
+      "proposito": "Separar la construcción de un objeto complejo de su representación.",
+      "codigo_referencia": {
+        "java": "class Computer {\n    String cpu;\n    String ram;\n}",
+        "python": "class Computer:\n    def __init__(self):\n        self.cpu = None\n        self.ram = None"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Director {\n        +construct()\n    }\n    class Builder {\n        <<interface>>\n        +buildPart()\n    }\n    class ConcreteBuilder {\n        +buildPart()\n        +getResult() Product\n    }\n    Director o-- Builder\n    Builder <|-- ConcreteBuilder\n    ConcreteBuilder ..> Product",
+        "descripcion": "El director controla el proceso de construcción usando un builder."
+      }
+    },
+    {
+      "nombre": "Prototype",
+      "categoria": "Creacional",
+      "proposito": "Crear nuevos objetos copiando una instancia existente.",
+      "codigo_referencia": {
+        "java": "class Prototype implements Cloneable {\n    public Prototype clone() throws CloneNotSupportedException {\n        return (Prototype) super.clone();\n    }\n}",
+        "python": "import copy\nclass Prototype:\n    pass\nobj = Prototype()\nclone = copy.copy(obj)"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Prototype {\n        <<interface>>\n        +clone()* Prototype\n    }\n    class ConcretePrototype {\n        +clone() Prototype\n    }\n    Prototype <|-- ConcretePrototype",
+        "descripcion": "Los objetos se duplican sin depender de su clase concreta."
+      }
+    },
+    {
+      "nombre": "Adapter",
+      "categoria": "Estructural",
+      "proposito": "Permitir que interfaces incompatibles trabajen juntas.",
+      "codigo_referencia": {
+        "java": "class Adapter implements Target {\n    private Adaptee adaptee;\n}",
+        "python": "class Adapter:\n    def __init__(self, adaptee):\n        self.adaptee = adaptee"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Target {\n        <<interface>>\n        +request()\n    }\n    class Adapter {\n        -Adaptee adaptee\n        +request()\n    }\n    class Adaptee {\n        +specificRequest()\n    }\n    Target <|-- Adapter\n    Adapter --> Adaptee",
+        "descripcion": "El adaptador traduce la interfaz de un objeto existente."
+      }
+    },
+    {
+      "nombre": "Decorator",
+      "categoria": "Estructural",
+      "proposito": "Agregar responsabilidades a un objeto dinámicamente.",
+      "codigo_referencia": {
+        "java": "abstract class Decorator extends Component {\n    protected Component component;\n}",
+        "python": "class Decorator:\n    def __init__(self, component):\n        self.component = component"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Component {\n        <<interface>>\n        +operation()\n    }\n    class ConcreteComponent {\n        +operation()\n    }\n    class Decorator {\n        <<abstract>>\n        -Component component\n    }\n    class ConcreteDecorator {\n        +operation()\n    }\n    Component <|-- ConcreteComponent\n    Component <|-- Decorator\n    Decorator o-- Component\n    Decorator <|-- ConcreteDecorator",
+        "descripcion": "Los decoradores envuelven objetos para extender su funcionalidad."
+      }
+    },
+    {
+      "nombre": "Facade",
+      "categoria": "Estructural",
+      "proposito": "Proporcionar una interfaz simplificada a un sistema complejo.",
+      "codigo_referencia": {
+        "java": "class Facade {\n    private SubsystemA a;\n    private SubsystemB b;\n}",
+        "python": "class Facade:\n    def operation(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Facade {\n        +operation()\n    }\n    class SubsystemA\n    class SubsystemB\n    Facade --> SubsystemA\n    Facade --> SubsystemB",
+        "descripcion": "La fachada centraliza el acceso a múltiples subsistemas."
+      }
+    },
+    {
+      "nombre": "Proxy",
+      "categoria": "Estructural",
+      "proposito": "Controlar el acceso a un objeto mediante un intermediario.",
+      "codigo_referencia": {
+        "java": "class Proxy implements Service {\n    private RealService service;\n}",
+        "python": "class Proxy:\n    def __init__(self, service):\n        self.service = service"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Service {\n        <<interface>>\n        +request()\n    }\n    class RealService {\n        +request()\n    }\n    class Proxy {\n        -RealService service\n        +request()\n    }\n    Service <|-- RealService\n    Service <|-- Proxy\n    Proxy --> RealService",
+        "descripcion": "El proxy gestiona el acceso al objeto real."
+      }
+    },
+    {
+      "nombre": "Observer",
+      "categoria": "Comportamiento",
+      "proposito": "Notificar automáticamente a múltiples objetos cuando el estado de otro cambia.",
+      "codigo_referencia": {
+        "java": "interface Observer { void update(); }",
+        "python": "class Observer:\n    def update(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Subject {\n        -observers\n        +attach(Observer)\n        +notify()\n    }\n    class Observer {\n        <<interface>>\n        +update()\n    }\n    class ConcreteObserver {\n        +update()\n    }\n    Subject --> Observer\n    Observer <|-- ConcreteObserver",
+        "descripcion": "Los observadores reaccionan a cambios del sujeto."
+      }
+    },
+    {
+      "nombre": "Strategy",
+      "categoria": "Comportamiento",
+      "proposito": "Definir una familia de algoritmos intercambiables.",
+      "codigo_referencia": {
+        "java": "interface Strategy { void execute(); }",
+        "python": "class Strategy:\n    def execute(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Context {\n        -Strategy strategy\n        +setStrategy(Strategy)\n        +execute()\n    }\n    class Strategy {\n        <<interface>>\n        +execute()\n    }\n    class ConcreteStrategy {\n        +execute()\n    }\n    Context o-- Strategy\n    Strategy <|-- ConcreteStrategy",
+        "descripcion": "El contexto utiliza estrategias intercambiables."
+      }
+    },
+    {
+      "nombre": "Command",
+      "categoria": "Comportamiento",
+      "proposito": "Encapsular una solicitud como un objeto.",
+      "codigo_referencia": {
+        "java": "interface Command { void execute(); }",
+        "python": "class Command:\n    def execute(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Invoker\n    class Command {\n        <<interface>>\n        +execute()\n    }\n    class ConcreteCommand {\n        -Receiver receiver\n        +execute()\n    }\n    class Receiver {\n        +action()\n    }\n    Invoker --> Command\n    Command <|-- ConcreteCommand\n    ConcreteCommand --> Receiver",
+        "descripcion": "Las acciones se parametrizan como objetos."
+      }
+    },
+    {
+      "nombre": "Iterator",
+      "categoria": "Comportamiento",
+      "proposito": "Acceder secuencialmente a los elementos de una colección.",
+      "codigo_referencia": {
+        "java": "Iterator<String> it = list.iterator();",
+        "python": "for item in collection:\n    print(item)"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Aggregate {\n        <<interface>>\n        +createIterator() Iterator\n    }\n    class Iterator {\n        <<interface>>\n        +next()\n        +hasNext()\n    }\n    Aggregate ..> Iterator",
+        "descripcion": "Permite recorrer colecciones sin exponer su estructura."
+      }
+    },
+    {
+      "nombre": "State",
+      "categoria": "Comportamiento",
+      "proposito": "Permitir que un objeto cambie su comportamiento cuando su estado cambia.",
+      "codigo_referencia": {
+        "java": "interface State { void handle(); }",
+        "python": "class State:\n    def handle(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Context {\n        -State state\n        +request()\n    }\n    class State {\n        <<interface>>\n        +handle()\n    }\n    class ConcreteState {\n        +handle()\n    }\n    Context o-- State\n    State <|-- ConcreteState",
+        "descripcion": "El comportamiento depende del estado interno."
+      }
+    }
+  ]
+}
