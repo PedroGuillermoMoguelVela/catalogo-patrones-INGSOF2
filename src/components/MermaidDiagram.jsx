@@ -50,7 +50,7 @@ const MermaidDiagram = ({ chart }) => {
   }, [chart, uniqueId]);
 
   return (
-    <div className="bg-white p-4 rounded-lg w-full flex justify-center items-center min-h-[250px]">
+    <div className="bg-white dark:bg-black p-4 rounded-lg w-full flex justify-center items-center min-h-[250px]">
       {error ? (
         <div className="text-error text-center p-4 border border-error/20 rounded-lg">
           <p className="font-bold">Error en el diagrama</p>

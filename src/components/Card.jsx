@@ -1,6 +1,5 @@
-import React from "react";
-import CardsGrid from "./CardsGrid";
 import CardModal from "./CardModal";
+import { motion } from "motion/react";
 
 const Card = ({
   nombre,
@@ -14,11 +13,18 @@ const Card = ({
   };
   return (
     <>
-      <div className="card bg-black shadow-sm" onClick={handleClick}>
-        <div className="card-body">
-          <h2 className="card-title">{nombre}</h2>
-          <div className="badge badge-outline badge-primary">{categoria}</div>
-        </div>
+      <div className="cursor-pointer" onClick={handleClick}>
+        <motion.div
+          className="card bg-black shadow-sm"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.5 }}
+          transition={{ duration: 0.2 }}
+        >
+          <div className="card-body">
+            <h2 className="card-title">{nombre}</h2>
+            <div className="badge badge-outline badge-primary">{categoria}</div>
+          </div>
+        </motion.div>
       </div>
 
       <CardModal
