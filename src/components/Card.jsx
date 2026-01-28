@@ -15,13 +15,13 @@ const Card = ({
     <>
       <div className="cursor-pointer" onClick={handleClick}>
         <motion.div
-          className="card bg-black shadow-sm"
+          className="card bg-gray-100 dark:bg-black  shadow-sm"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.5 }}
           transition={{ duration: 0.2 }}
         >
           <div className="card-body">
-            <h2 className="card-title">{nombre}</h2>
+            <h2 className="card-title dark:text-white text-black">{nombre}</h2>
             <div className="badge badge-outline badge-primary">{categoria}</div>
           </div>
         </motion.div>
