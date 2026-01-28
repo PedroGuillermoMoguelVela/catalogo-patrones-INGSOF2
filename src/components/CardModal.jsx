@@ -22,14 +22,14 @@ const CardModal = ({
         <p className="py-4">{proposito}</p>
 
         {/*JAVA*/}
-        <div className="mockup-code w-full">
+        <div className="mockup-code w-full mb-7">
           <pre className="px-4">
             <code>{codigo_referencia.java}</code>
           </pre>
         </div>
 
         {/*PYTHON*/}
-        <div className="mockup-code w-full">
+        <div className="mockup-code w-full mt-8 mb-8">
           <pre className="px-4">
             <code>{codigo_referencia.python}</code>
           </pre>
