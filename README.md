@@ -1,17 +1,78 @@
-# React + Vite
+# Catalogo de Patrones de Siseño de Software
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripcion del proyecto
 
-Currently, two official plugins are available:
+## Integrantes: Kevin Zapata, Pedro Moguel
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Indicaciones:
 
-## React Compiler
+Construir un catálogo técnico de consulta que sirva como base para la toma de decisiones en el diseño de arquitecturas de software complejas. Se evaluará la precisión técnica y la capacidad de trabajo colaborativo mediante control de versiones.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Requisitos:
 
-## Expanding the ESLint configuration
+URL Pública: El repositorio debe ser accesible para el docente sin restricciones.
+Colaboración Trazable: Se verificará el historial de commits para asegurar que cada integrante del equipo haya contribuido equitativamente.
+Estructura del README: El archivo principal debe servir como índice de los patrones documentados.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# catalogo-patrones-INGSOF2
+# Estructura requerida por patron
+
+Cada patrón de diseño asignado debe contener los siguientes 5 puntos:
+
+Nombre: Identificación oficial del patrón.
+Categoría: Creacional, Estructural o de Comportamiento.
+Propósito: El "qué hace" y "por qué es útil" en una oración.
+Código de Referencia: Ejemplo funcional en mínimo 2 lenguajes (Ej. Java, JavaScript, Python o C#).
+Estructura UML: Diagrama de clases que ilustre la relación entre los objetos participantes.
+
+Este repositorio contiene un **Catalogo tecnico de patrones de diseño de software**, cuyo objetivo es servir como base de consulta para la **toma de decisiones en el diseño de arquitecturas de software complejas**
+
+Cada patron documado incluye su identificacion, clasificacion, proposito, ejemplos de codigo en multiples lenguajes de proramacion y su respectivo diagrama UML, permitiendo asi comprender tanto su estructura como su aplicacion practica.
+
+El proyecto fue desarrollado de manera colaborativa utilizando **control de versiones con Git y GitHub**, lo que permite visualizar las contribuciones de cada integrante de nuestro equipo
+
+---
+
+## Estructura del Repositorio
+
+El repositori esta organizado de la sigueinte manera:
+
+-Un carpeta principal que contiene la documentacion y el codigo de todos los patrones
+-Dentro de esta carpeta podra encontrar los ejemplos de codigo y diagramas UML correspondientes a cada patron (apesar de los patrones se encuentren en una misma carpetaa, cada uno esta claramente identiciado y documentado de la forma sigueinte )
+
+# Indice de patron de diseño
+
+## patrones creacionales
+
+- **Singleton**
+- **Factory method**
+- **Abstract Factory**
+- **Builder**
+- **Prototype**
+
+## Patrones Estructurales
+
+- **Adapter**
+- **Decorator**
+- **Facade**
+- **Proxy**
+
+## Patrones de comportamiento
+
+- **Observer**
+- **Strategy**
+- **Command**
+- **Iterator**
+- **State**
+  Cada oatron esta acomomodado e incluye:
+  -Nombre Oficial
+  -Categoria
+  -Proposito
+  -Ejemplo de codigo en Python y Java
+  -Diagrama UML de clases
+
+## Tecnologias Empleadas
+
+- Lenguajes de programacion JavaScrip con react
+- Control de versiones: Git
+- Plataforma de alojamiento: GitHub
+- Diagramas UML para representacion estructural
