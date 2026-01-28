@@ -1,8 +1,9 @@
 import React from "react";
 import CardsGrid from "./CardsGrid";
 import Card from "./Card";
-import patrones from "../assets/patrones.mock.json";
-
+const response = await fetch("/patrones.mock.json");
+const patrones = await response.json();
+console.log(patrones);
 const Patrones = () => {
   const categories = ["Creacional", "Estructural", "Comportamiento"];
   return categories.map((category) => {
