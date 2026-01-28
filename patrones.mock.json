@@ -181,6 +181,123 @@
         "formato_mermaid": "classDiagram\n    class Context {\n        -State state\n        +request()\n    }\n    class State {\n        <<interface>>\n        +handle()\n    }\n    class ConcreteState {\n        +handle()\n    }\n    Context o-- State\n    State <|-- ConcreteState",
         "descripcion": "El comportamiento depende del estado interno."
       }
+    },
+    {
+      "nombre": "Bridge",
+      "categoria": "Estructural",
+      "proposito": "Desacoplar una abstracción de su implementación para que ambas puedan variar independientemente.",
+      "codigo_referencia": {
+        "java": "interface Implementor { void operationImpl(); }",
+        "python": "class Implementor:\n    def operation_impl(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Abstraction {\n        -Implementor impl\n        +operation()\n    }\n    class Implementor {\n        <<interface>>\n        +operationImpl()\n    }\n    class ConcreteImplementor {\n        +operationImpl()\n    }\n    Abstraction o-- Implementor\n    Implementor <|-- ConcreteImplementor",
+        "descripcion": "Separa la abstracción de la implementación."
+      }
+    },
+    {
+      "nombre": "Composite",
+      "categoria": "Estructural",
+      "proposito": "Componer objetos en estructuras de árbol para representar jerarquías parte-todo.",
+      "codigo_referencia": {
+        "java": "interface Component { void operation(); }",
+        "python": "class Component:\n    def operation(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Component {\n        <<interface>>\n        +operation()\n    }\n    class Leaf {\n        +operation()\n    }\n    class Composite {\n        +operation()\n        +add(Component)\n    }\n    Component <|-- Leaf\n    Component <|-- Composite\n    Composite o-- Component",
+        "descripcion": "Permite tratar objetos individuales y compuestos de la misma forma."
+      }
+    },
+    {
+      "nombre": "Flyweight",
+      "categoria": "Estructural",
+      "proposito": "Reducir el uso de memoria compartiendo objetos comunes en grandes cantidades.",
+      "codigo_referencia": {
+        "java": "interface Flyweight { void operation(); }",
+        "python": "class Flyweight:\n    def operation(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Flyweight {\n        <<interface>>\n        +operation()\n    }\n    class ConcreteFlyweight {\n        +operation()\n    }\n    class FlyweightFactory {\n        +getFlyweight(key)\n    }\n    Flyweight <|-- ConcreteFlyweight\n    FlyweightFactory o-- Flyweight",
+        "descripcion": "Comparte objetos para minimizar el consumo de memoria."
+      }
+    },
+    {
+      "nombre": "Chain of Responsibility",
+      "categoria": "Comportamiento",
+      "proposito": "Evitar el acoplamiento del emisor de una solicitud con su receptor al pasar la solicitud a lo largo de una cadena.",
+      "codigo_referencia": {
+        "java": "abstract class Handler { Handler next; void handle(); }",
+        "python": "class Handler:\n    def __init__(self, next=None):\n        self.next = next\n    def handle(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Handler {\n        -Handler next\n        +handle()\n    }\n    class ConcreteHandler {\n        +handle()\n    }\n    Handler <|-- ConcreteHandler\n    Handler o-- Handler",
+        "descripcion": "La petición se pasa por una cadena de manejadores."
+      }
+    },
+    {
+      "nombre": "Mediator",
+      "categoria": "Comportamiento",
+      "proposito": "Definir un objeto que centraliza la comunicación entre otros objetos.",
+      "codigo_referencia": {
+        "java": "interface Mediator { void notify(); }",
+        "python": "class Mediator:\n    def notify(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Mediator {\n        <<interface>>\n        +notify()\n    }\n    class Colleague {\n        -Mediator mediator\n    }\n    Mediator o-- Colleague",
+        "descripcion": "Reduce el acoplamiento entre objetos al centralizar la comunicación."
+      }
+    },
+    {
+      "nombre": "Memento",
+      "categoria": "Comportamiento",
+      "proposito": "Capturar y restaurar el estado interno de un objeto sin violar la encapsulación.",
+      "codigo_referencia": {
+        "java": "class Memento { String state; }",
+        "python": "class Memento:\n    def __init__(self, state):\n        self.state = state"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Originator {\n        +save()\n        +restore()\n    }\n    class Memento\n    class Caretaker\n    Originator --> Memento\n    Caretaker o-- Memento",
+        "descripcion": "Permite deshacer operaciones recuperando estados previos."
+      }
+    },
+    {
+      "nombre": "Template Method",
+      "categoria": "Comportamiento",
+      "proposito": "Definir el esqueleto de un algoritmo y permitir que las subclases redefinan ciertos pasos.",
+      "codigo_referencia": {
+        "java": "abstract class AbstractClass { final void template(); }",
+        "python": "class AbstractClass:\n    def template(self):\n        self.step()"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class AbstractClass {\n        +template()\n        #step()\n    }\n    class ConcreteClass {\n        +step()\n    }\n    AbstractClass <|-- ConcreteClass",
+        "descripcion": "El algoritmo base se define en la superclase."
+      }
+    },
+    {
+      "nombre": "Visitor",
+      "categoria": "Comportamiento",
+      "proposito": "Definir nuevas operaciones sobre una estructura de objetos sin modificarla.",
+      "codigo_referencia": {
+        "java": "interface Visitor { void visit(); }",
+        "python": "class Visitor:\n    def visit(self, element):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Visitor {\n        <<interface>>\n        +visit()\n    }\n    class Element {\n        +accept(Visitor)\n    }\n    Visitor --> Element",
+        "descripcion": "Separa algoritmos de la estructura de objetos."
+      }
+    },
+    {
+      "nombre": "Interpreter",
+      "categoria": "Comportamiento",
+      "proposito": "Definir una gramática y un intérprete para procesar expresiones del lenguaje.",
+      "codigo_referencia": {
+        "java": "interface Expression { void interpret(); }",
+        "python": "class Expression:\n    def interpret(self):\n        pass"
+      },
+      "estructura_uml": {
+        "formato_mermaid": "classDiagram\n    class Expression {\n        <<interface>>\n        +interpret()\n    }\n    class TerminalExpression {\n        +interpret()\n    }\n    Expression <|-- TerminalExpression",
+        "descripcion": "Interpreta sentencias de un lenguaje definido."
+      }
     }
   ]
 }
